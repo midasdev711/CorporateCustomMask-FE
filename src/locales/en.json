@@ -9,7 +9,7 @@
 	"Company website": "Company website",
 	"Phone": "Phone",
 	"Comment": "Comment",
-	"File input": "File input",
+	"Upload logo here": "Upload logo here",
 	"Save": "Save",
 	"Please fill the form": "Please fill the form",
 	"Name is required": "Name is required",
@@ -25,5 +25,7 @@
     "E-mail is required": "E-mail is required",
     "E-mail must be valid": "E-mail must be valid",
     "Image is required": "Image is required",
-    "Color is required": "Color is required"
+    "Color is required": "Color is required",
+    "Number of masks needed": "Number of masks needed",
+    "Delivery date is required": "Delivery date is required"
 }

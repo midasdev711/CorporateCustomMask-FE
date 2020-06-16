@@ -5,28 +5,7 @@
         <h2>Your Company's Custom Premium Masks Made in Montreal in 15 days</h2>
       </v-col>
       <v-col cols="12" xs="12" sm="8" offset-sm="2">
-        <v-card class="mt-0">
-          <v-container fluid>
-            <v-row>
-              <v-col v-for="n in 6" :key="n" class="d-flex child-flex" cols="4">
-                <v-card flat tile class="d-flex">
-                  <v-img
-                    :src="`https://picsum.photos/500/300?image=${n * 5 + 10}`"
-                    :lazy-src="`https://picsum.photos/10/6?image=${n * 5 + 10}`"
-                    aspect-ratio="1"
-                    class="grey lighten-2"
-                  >
-                    <template v-slot:placeholder>
-                      <v-row class="fill-height ma-0" align="center" justify="center">
-                        <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
-                      </v-row>
-                    </template>
-                  </v-img>
-                </v-card>
-              </v-col>
-            </v-row>
-          </v-container>
-        </v-card>
+        <img src="@/assets/banner.png" width="100%" class="img-responsive">
       </v-col>
       <v-col cols="12" xs="12" sm="8" offset-sm="2">
         <v-expansion-panels :accordion="true" :hover="true">
@@ -89,7 +68,7 @@
               ></v-combobox>
             </v-col>
 
-            <v-col cols="12" md="7">
+            <v-col cols="12" md="6">
               <v-text-field
                 v-model="uploadInfo.companyWebsite"
                 :rules="companyWebsiteRules"
@@ -99,7 +78,43 @@
               ></v-text-field>
             </v-col>
 
-            <v-col cols="12" md="6">
+            <v-col cols="12" md="3">
+              <v-text-field
+                v-model="uploadInfo.maskCountNeeded"
+                :rules="MaskCountRules"
+                :label="$t('Number of masks needed')"
+                type="number"
+                color="blue darken-2"
+                required
+              ></v-text-field>
+            </v-col>
+
+            <v-col cols="12" md="3">
+              <v-menu
+                v-model="datepickerMenu"
+                :close-on-content-click="false"
+                :nudge-right="40"
+                transition="scale-transition"
+                offset-y
+                min-width="290px"
+              >
+                <template v-slot:activator="{ on, attrs }">
+                  <v-text-field
+                    v-model="uploadInfo.deliveryDate"
+                    label="Required delivery date"
+                    prepend-icon="mdi-calendar"
+                    readonly
+                    required
+                    :rules="deliveryDateRules"
+                    v-bind="attrs"
+                    v-on="on"
+                  ></v-text-field>
+                </template>
+                <v-date-picker v-model="uploadInfo.deliveryDate" @input="datepickerMenu = false"></v-date-picker>
+              </v-menu>
+            </v-col>
+
+            <v-col cols="12" md="12">
               <v-file-input
                 show-size
                 accept="image/*"
@@ -110,8 +125,14 @@
               ></v-file-input>
             </v-col>
 
-            <v-col cols="12" md="12">
-              <v-color-picker class="ma-2" v-model="uploadInfo.color" :rules="colorRules" required></v-color-picker>
+            <v-col cols="12" md="4">
+              <v-color-picker class="ma-2" v-model="uploadInfo.color1" :rules="colorRules" required></v-color-picker>
+            </v-col>
+            <v-col cols="12" md="4">
+              <v-color-picker class="ma-2" v-model="uploadInfo.color2" :rules="colorRules" required></v-color-picker>
+            </v-col>
+            <v-col cols="12" md="4">
+              <v-color-picker class="ma-2" v-model="uploadInfo.color3" :rules="colorRules" required></v-color-picker>
             </v-col>
 
             <v-col cols="12" md="3">
@@ -250,6 +271,8 @@ export default {
       ],
       imageRules: [v => !!v || this.$t("Image is required")],
       colorRules: [v => !!v || this.$t("Color is required")],
+      MaskCountRules: [v => !!v || this.$t("Number of masks needed is required")],
+      deliveryDateRules: [v => !!v || this.$t("Delivery date is required")],
       uploadInfo: {
         companyName: null,
         companyWebsite: null,
@@ -261,8 +284,12 @@ export default {
         phone: null,
         email: null,
         comment: null,
-        color: null,
-        filename: null
+        color1: null,
+        color2: null,
+        color3: null,
+        filename: null,
+        maskCountNeeded: null,
+        deliveryDate: null
       },
       image: null,
       valid: true,
@@ -275,6 +302,7 @@ export default {
       selectedProvinceCode: null,
       selectedCountryCode: null,
       saveLoading: false,
+      datepickerMenu: false
     };
   },
 
@@ -292,6 +320,9 @@ export default {
         this.saveLoading = true;
         let formData = new FormData();
         formData.append("files", this.image, this.image.name);
+
+        // get current input language
+        this.uploadInfo.inputLanguage = this.$i18n.locale;
 
         // additional data
         this.uploadInfo.filename = this.image.name;
