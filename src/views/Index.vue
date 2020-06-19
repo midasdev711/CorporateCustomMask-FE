@@ -2,22 +2,39 @@
   <v-container fluid tag="section">
     <v-row>
       <v-col cols="12" xs="12" sm="8" offset-sm="2">
-        <h2>Your Company's Custom Premium Masks Made in Montreal in 15 days</h2>
+        <h2 class="headline text-center">Your Company's Custom Premium Masks Made in Montreal in 15 days</h2>
       </v-col>
       <v-col cols="12" xs="12" sm="8" offset-sm="2">
         <img src="@/assets/banner.png" width="100%" class="img-responsive">
       </v-col>
-      <v-col cols="12" xs="12" sm="8" offset-sm="2">
-        <v-expansion-panels :accordion="true" :hover="true">
-          <v-expansion-panel v-for="(item,index) in faq" :key="index">
-            <v-expansion-panel-header>{{ item.question }}</v-expansion-panel-header>
-            <v-expansion-panel-content>{{ item.answer }}</v-expansion-panel-content>
-          </v-expansion-panel>
-        </v-expansion-panels>
+      <v-col cols="12" xs="12" sm="8" offset-sm="2" class="text-center">
+        <v-btn
+          ref="button"
+          color="darkgrey darken-3"
+          class="display-2"
+          @click="$vuetify.goTo('#form', options)"
+        >
+          DEMANDEZ UN ESTIMÉ
+        </v-btn>
+        <p class="display-1 mt-4">
+          - Construit pour perdurer (résistant à plusieurs dizaines de lavages)
+          <br><br>
+          -Logo de la compagnie, taille du masque ainsi qu'un rappel des mesures de sécurité de la COVID19 sont imprimées à l'intérieur ("Lavez et sécher à plat avant usage. Les masques ne sont pas suffisants pour protéger à eux seuls contre la COVID19. Lavez-vous les mains fréquemment, gardez vos distances et restez à la maison tant que faire ce peut.”
+          <br><br>
+          -Serre-nez qui se retire pour le lavage inclus
+          <br><br>
+          -Pré-rapetissé (ne rapetissera pas au lavage)
+          <br><br>
+          -Adapté aux formes du visage (5 grandeurs; XS à XL)
+          <br><br>
+          -Double couche de poly interlock hautement extensible traité thermiquement
+          <br><br>
+          -Fait au Canada
+        </p>
       </v-col>
       <v-col cols="12" xs="12" sm="8" offset-sm="2">
         <h3 class="headline">{{ $t('Please fill the form') }}</h3>
-        <v-form ref="form" lazy-validation v-model="valid" class="elevation-2 grey lighten-4 pa-3 mt-5">
+        <v-form ref="form" lazy-validation v-model="valid" id="form" class="elevation-2 grey lighten-4 pa-3 mt-5">
           <v-row>
             <v-col cols="12" md="3">
               <v-text-field
@@ -126,13 +143,13 @@
             </v-col>
 
             <v-col cols="12" md="4">
-              <v-color-picker class="ma-2" v-model="uploadInfo.color1" :rules="colorRules" required></v-color-picker>
+              <v-color-picker class="ma-2" v-model="uploadInfo.color1" :rules="colorRules" mode="hexa" required></v-color-picker>
             </v-col>
             <v-col cols="12" md="4">
-              <v-color-picker class="ma-2" v-model="uploadInfo.color2" :rules="colorRules" required></v-color-picker>
+              <v-color-picker class="ma-2" v-model="uploadInfo.color2" :rules="colorRules" mode="hexa" required></v-color-picker>
             </v-col>
             <v-col cols="12" md="4">
-              <v-color-picker class="ma-2" v-model="uploadInfo.color3" :rules="colorRules" required></v-color-picker>
+              <v-color-picker class="ma-2" v-model="uploadInfo.color3" :rules="colorRules" mode="hexa" required></v-color-picker>
             </v-col>
 
             <v-col cols="12" md="3">
@@ -302,7 +319,12 @@ export default {
       selectedProvinceCode: null,
       selectedCountryCode: null,
       saveLoading: false,
-      datepickerMenu: false
+      datepickerMenu: false,
+      options: {
+        duration: 1000,
+        offset: 200,
+        easing: 'easeInCubic',
+      }
     };
   },
 
