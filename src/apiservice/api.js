@@ -7,15 +7,10 @@ const API_URL = process.env.VUE_APP_DEV_API_ROOT;
 
 export default class APIService {
   get(sub_url, headers = {}) {
-    // let token = localStorage.getItem("token");
-
-    // let token = process.env.TEMP_TOKEN;
-
-    let url = `/internalapi${sub_url}`;
+    let url = `${API_URL}` + sub_url;
     return axios.get(url, {
       headers: {
-        ...headers,
-        Authorization: "bearer " + token
+        ...headers
       }
     })
       .then(response => {

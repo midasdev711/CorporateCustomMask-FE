@@ -29,6 +29,36 @@ const actions = {
       return err;
     });
   },
+
+  getCountries: async ({ commit }) => {
+    let headers = { };
+    return API.get(`/getCountries`, headers).then(res => {
+      // commit(SET_USER_PROFILE, res.data);
+      return res;
+    }).catch(err => {
+      return err;
+    });
+  },
+
+  getStates: async ({ commit }, payload) => {
+    let headers = { };
+    return API.get(`/getStates?countryId=${payload.countryId}`, headers).then(res => {
+      // commit(SET_USER_PROFILE, res.data);
+      return res;
+    }).catch(err => {
+      return err;
+    });
+  },
+
+  getCities: async ({ commit }, payload) => {
+    let headers = { };
+    return API.get(`/getCities?countryId=${payload.countryId}&stateId=${payload.stateId}`, headers).then(res => {
+      // commit(SET_USER_PROFILE, res.data);
+      return res;
+    }).catch(err => {
+      return err;
+    });
+  },
 };
 
 export default {

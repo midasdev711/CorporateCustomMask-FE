@@ -334,7 +334,10 @@ export default {
 
   methods: {
     ...mapActions("app", {
-      saveData: "save"
+      saveData: "save",
+      getCountries: "getCountries",
+      getStates: "getStates",
+      getCities: "getCities"
     }),
 
     async validate() {
@@ -365,30 +368,25 @@ export default {
     async countryInput(e) {
       this.uploadInfo.country = e.text;
       this.selectedCountryCode = e.value;
-      var headers = { 'Content-Type': 'application/json', Accpet: '*/*' };
       this.provinceLoading = true;
-      var res = await axios.post(`${this.basicUrl}/api/api.php?type=getStates&countryId=${e.value}&addClasses=states`, {}, headers);
-      for (let key in res.data.result) {
-        this.provinces.push({
-          value: key,
-          text: res.data.result[key]
-        });
-      }
+      let payload = {
+        countryId: this.selectedCountryCode
+      };
+      var res = await this.getStates(payload);
+      this.provinces = Object.assign([], res);
       this.provinceLoading = false;
     },
 
     async provinceInput(e) {
       this.uploadInfo.province = e.text;
       this.selectedProvinceCode = e.value;
-      var headers = { 'Content-Type': 'application/json', Accpet: '*/*' };
       this.cityLoading = true;
-      var res = await axios.post(`${this.basicUrl}/api/api.php?type=getCities&countryId=${this.selectedCountryCode}&stateId=${this.selectedProvinceCode}&addClasses=cities`, {}, headers);
-      for (let key in res.data.result) {
-        this.cities.push({
-          value: key,
-          text: res.data.result[key]
-        });
-      }
+      let payload = {
+        countryId: this.selectedCountryCode,
+        stateId: this.selectedProvinceCode
+      };
+      var res = await this.getCities(payload);
+      this.cities = Object.assign([], res);
       this.cityLoading = false;
     },
 
@@ -398,16 +396,9 @@ export default {
   },
 
   async mounted() {
-    this.basicUrl = process.env.VUE_APP_ENVIRONMENT == 'development' ? '' : 'https://geodata.solutions';
-    var headers = { 'Content-Type': 'application/json', Accpet: '*/*' };
     this.countryLoading = true;
-    var res = await axios.post(`${this.basicUrl}/api/api.php?type=getCountries&addClasses=countries`, {}, headers);
-    for (let key in res.data.result) {
-      this.countries.push({
-        value: key,
-        text: res.data.result[key]
-      });
-    }
+    var res = await this.getCountries();
+    this.countries = Object.assign([], res);
     this.countryLoading = false;
   }
 };
