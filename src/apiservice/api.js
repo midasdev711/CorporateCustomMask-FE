@@ -2,7 +2,7 @@ import axios from 'axios';
 import router from '@/router';
 require("dotenv").config();
 
-const API_URL = process.env.VUE_APP_DEV_API_ROOT;
+const API_URL = process.env.VUE_APP_DEV_API_ROOT ? process.env.VUE_APP_DEV_API_ROOT : '';
 // const token = process.env.VUE_APP_TEMP_TOKEN;
 
 export default class APIService {
