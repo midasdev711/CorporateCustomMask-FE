@@ -1,13 +1,15 @@
 <template>
   <v-container fluid tag="section">
     <v-row>
-      <v-col cols="12" xs="12" sm="8" offset-sm="2">
-        <h2 class="headline text-center">Your Company's Custom Premium Masks Made in Montreal in 15 days</h2>
+      <v-col cols="12" xs="12" sm="6" offset-sm="3">
+        <h1 class="text-font1 text-center display-4">“BACK TO WORK”</h1>
+        <h2 class="headline text-center text-font2 mb-5">Propagez votre image. Pas le virus</h2>
+        <p class="text-center text-font2 pt-2">Ensemble, préparons le retour au travail. Protégez vos employés en leur offrant un masque haut de gamme aux couleurs de votre compagnie. Du même coup, vous renforcerez le sentiment de sécurité et d'appartenance à votre compagnie.</p>
       </v-col>
       <v-col cols="12" xs="12" sm="8" offset-sm="2">
-        <img src="@/assets/banner.png" width="100%" class="img-responsive">
+        <img src="@/assets/banner1.png" width="100%" class="img-responsive">
       </v-col>
-      <v-col cols="12" xs="12" sm="8" offset-sm="2" class="text-center">
+      <v-col cols="12" xs="12" sm="6" offset-sm="3" class="text-center">
         <v-btn
           ref="button"
           color="darkgrey darken-3"
@@ -16,7 +18,7 @@
         >
           DEMANDEZ UN ESTIMÉ
         </v-btn>
-        <p class="display-1 mt-4">
+        <p class="display-1 mt-4 text-font2">
           - Construit pour perdurer (résistant à plusieurs dizaines de lavages)
           <br><br>
           -Logo de la compagnie, taille du masque ainsi qu'un rappel des mesures de sécurité de la COVID19 sont imprimées à l'intérieur ("Lavez et sécher à plat avant usage. Les masques ne sont pas suffisants pour protéger à eux seuls contre la COVID19. Lavez-vous les mains fréquemment, gardez vos distances et restez à la maison tant que faire ce peut.”
@@ -31,6 +33,16 @@
           <br><br>
           -Fait au Canada
         </p>
+      </v-col>
+      <v-col cols="12" xs="12" sm="10" offset-sm="1">
+        <v-divider :inset="false" :light="true"></v-divider>
+      </v-col>
+      <v-col cols="12" xs="12" sm="8" offset-sm="2" class="mt-4">
+        <img src="@/assets/banner.png" width="100%" class="img-responsive">
+      </v-col>
+      <v-col cols="12" xs="12" sm="6" offset-sm="3" class="text-center">
+        <h2 class="text-font1 text-center display-4">À vous de jouer !</h2>
+        <p class="text-center text-font2 pt-2">En moins d’une minute, remplissez les informations ci-bas. Les designers vous enverront des options de design et de prix. Vous pourrez commenter vos visuels. Prenez le temps de le faire… Il ne faut pas sous-estimer la force de cet outil marketing.</p>
       </v-col>
       <v-col cols="12" xs="12" sm="8" offset-sm="2">
         <h3 class="headline">{{ $t('Please fill the form') }}</h3>
@@ -405,7 +417,22 @@ export default {
 </script>
 
 <style scoped>
+@font-face {
+  font-family: "Circular Std Bold";
+  src: url("../assets/font/Circular Std Bold.ttf");
+}
+
 .submit-button {
   width: 200px;
 }
+
+.text-font1 {
+  font-family: 'Garamond'!important;
+}
+
+.text-font2 {
+  font-family: 'Circular Std Bold'!important;
+}
+
+
 </style>

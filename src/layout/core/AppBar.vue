@@ -83,7 +83,7 @@
       if (currentLocale) {
         this.$i18n.locale = currentLocale;
       } else {
-        this.$i18n.locale = 'en';
+        this.$i18n.locale = 'fr';
       }
     }
   }

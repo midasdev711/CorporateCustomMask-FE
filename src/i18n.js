@@ -18,8 +18,8 @@ const messages = {
 }
 
 let translation = new VueI18n({
-  locale: 'en',
-  fallbackLocale: 'fr',
+  locale: 'fr',
+  fallbackLocale: 'en',
   messages,
 })
 
