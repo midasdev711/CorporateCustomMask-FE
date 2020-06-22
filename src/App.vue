@@ -10,6 +10,6 @@
 
 <style>
 * {
-	font-family: Avenir;
+	font-family: 'Circular Std Bold';
 }
 </style>

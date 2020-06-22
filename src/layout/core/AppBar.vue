@@ -3,18 +3,17 @@
     id="app-bar"
     color="white"
     flat
-    height="140"
+    height="100"
     class="header-toolbar elevation-4"
     fixed
   >
     <v-layout>
       <v-row>
         <v-col cols="12" sm="8" offset-sm="2" class="d-flex justify-space-around flex-wrap header-bar">
-          <v-spacer class="d-sm-none d-md-block"></v-spacer>
           <img src="@/assets/logo.png" class="logo img-responsive">
           <v-spacer class="d-sm-none d-md-block"></v-spacer>
-          <v-btn text sm class="mt-8 elevation-0 display-1 black--text" v-if="$i18n.locale == 'fr'" @click="setLocale('en')">EN</v-btn>
-          <v-btn text sm class="mt-8 elevation-0 display-1 black--text" v-else @click="setLocale('fr')">FR</v-btn>
+          <v-btn text sm class="mt-8 elevation-0 display-1 black--text text-font2" v-if="$i18n.locale == 'fr'" @click="setLocale('en')">EN</v-btn>
+          <v-btn text sm class="mt-8 elevation-0 display-1 black--text text-font2" v-else @click="setLocale('fr')">FR</v-btn>
         </v-col>
       </v-row>
   </v-layout>
@@ -94,7 +93,17 @@
   backdrop-filter: blur(0.8);
 }
 
-@media (max-width: 768px) {
+.logo {
+  width: 178px;
+  height: 19px;
+  margin-bottom: 20px;
+}
+
+.header-bar {
+  align-items: flex-end;
+}
+
+/*@media (max-width: 768px) {
   .header-bar {
     flex-direction: column;
     align-items: center;
@@ -109,5 +118,5 @@
     height: auto;
     margin-top: 20px;
   }  
-}
+}*/
 </style>

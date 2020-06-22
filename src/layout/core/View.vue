@@ -18,7 +18,7 @@
 <style>
 .theme--light .v-content {
   background-color: white;
-  padding-top: 140px!important;
+  padding-top: 100px!important;
 }
 
 /*@media (max-width: 992px) {

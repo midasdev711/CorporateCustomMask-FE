@@ -9,7 +9,7 @@
         no-gutters
       >
         <v-col cols="12" sm="8" offset-sm="2" class="d-flex justify-space-between flex-wrap footer-section">
-          <img src="@/assets/logo.png" height="70px" class="img-responsive">
+          <img src="@/assets/logo.png" height="70px" class="img-responsive logo">
           <div id="contact" class="d-flex flex-column font-weight-medium mt-3">
             <span>300-8850 Ave du Parc,</span>
             <span>Montreal, QC, H2N 1Y6</span>
@@ -56,4 +56,8 @@
       text-decoration: none
       text-transform: uppercase
 
+  .logo 
+    width: 178px
+    height: 19px
+    margin-bottom: 20px
 </style>

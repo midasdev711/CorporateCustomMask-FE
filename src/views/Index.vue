@@ -37,12 +37,12 @@
       <v-col cols="12" xs="12" sm="10" offset-sm="1">
         <v-divider :inset="false" :light="true"></v-divider>
       </v-col>
-      <v-col cols="12" xs="12" sm="8" offset-sm="2" class="mt-4">
-        <img src="@/assets/banner.png" width="100%" class="img-responsive">
-      </v-col>
       <v-col cols="12" xs="12" sm="6" offset-sm="3" class="text-center">
         <h2 class="text-font1 text-center display-4">À vous de jouer !</h2>
         <p class="text-center text-font2 pt-2">En moins d’une minute, remplissez les informations ci-bas. Les designers vous enverront des options de design et de prix. Vous pourrez commenter vos visuels. Prenez le temps de le faire… Il ne faut pas sous-estimer la force de cet outil marketing.</p>
+      </v-col>
+      <v-col cols="12" xs="12" sm="8" offset-sm="2" class="mt-2">
+        <img src="@/assets/banner.png" width="100%" class="img-responsive">
       </v-col>
       <v-col cols="12" xs="12" sm="8" offset-sm="2">
         <h3 class="headline">{{ $t('Please fill the form') }}</h3>
@@ -417,11 +417,6 @@ export default {
 </script>
 
 <style scoped>
-@font-face {
-  font-family: "Circular Std Bold";
-  src: url("../assets/font/Circular Std Bold.ttf");
-}
-
 .submit-button {
   width: 200px;
 }
@@ -433,6 +428,4 @@ export default {
 .text-font2 {
   font-family: 'Circular Std Bold'!important;
 }
-
-
 </style>
