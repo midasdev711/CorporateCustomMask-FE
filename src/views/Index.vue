@@ -2,9 +2,9 @@
   <v-container fluid tag="section">
     <v-row>
       <v-col cols="12" xs="12" sm="6" offset-sm="3">
-        <h1 class="text-font1 text-center display-4">“BACK TO WORK”</h1>
-        <h2 class="headline text-center text-font2 mb-5">Propagez votre image. Pas le virus</h2>
-        <p class="text-center text-font2 pt-2">Ensemble, préparons le retour au travail. Protégez vos employés en leur offrant un masque haut de gamme aux couleurs de votre compagnie. Du même coup, vous renforcerez le sentiment de sécurité et d'appartenance à votre compagnie.</p>
+        <h1 class="text-font1 text-center display-4">{{ $t('Text1') }}</h1>
+        <h2 class="headline text-center text-font2 mb-5">{{ $t('Text2') }}</h2>
+        <p class="text-center text-font2 pt-2">{{ $t('Text3') }}</p>
       </v-col>
       <v-col cols="12" xs="12" sm="8" offset-sm="2">
         <img src="@/assets/banner1.png" width="100%" class="img-responsive">
@@ -16,30 +16,30 @@
           class="display-2"
           @click="$vuetify.goTo('#form', options)"
         >
-          DEMANDEZ UN ESTIMÉ
+          {{ $t('Text4') }}
         </v-btn>
         <p class="display-1 mt-4 text-font2">
-          - Construit pour perdurer (résistant à plusieurs dizaines de lavages)
+          {{ $t('Text5') }}
           <br><br>
-          -Logo de la compagnie, taille du masque ainsi qu'un rappel des mesures de sécurité de la COVID19 sont imprimées à l'intérieur ("Lavez et sécher à plat avant usage. Les masques ne sont pas suffisants pour protéger à eux seuls contre la COVID19. Lavez-vous les mains fréquemment, gardez vos distances et restez à la maison tant que faire ce peut.”
+          {{ $t('Text6') }}
           <br><br>
-          -Serre-nez qui se retire pour le lavage inclus
+          {{ $t('Text7') }}
           <br><br>
-          -Pré-rapetissé (ne rapetissera pas au lavage)
+          {{ $t('Text8') }}
           <br><br>
-          -Adapté aux formes du visage (5 grandeurs; XS à XL)
+          {{ $t('Text9') }}
           <br><br>
-          -Double couche de poly interlock hautement extensible traité thermiquement
+          {{ $t('Text10') }}
           <br><br>
-          -Fait au Canada
+          {{ $t('Text11') }}
         </p>
       </v-col>
       <v-col cols="12" xs="12" sm="10" offset-sm="1">
         <v-divider :inset="false" :light="true"></v-divider>
       </v-col>
       <v-col cols="12" xs="12" sm="6" offset-sm="3" class="text-center">
-        <h2 class="text-font1 text-center display-4">À vous de jouer !</h2>
-        <p class="text-center text-font2 pt-2">En moins d’une minute, remplissez les informations ci-bas. Les designers vous enverront des options de design et de prix. Vous pourrez commenter vos visuels. Prenez le temps de le faire… Il ne faut pas sous-estimer la force de cet outil marketing.</p>
+        <h2 class="text-font1 text-center display-4">{{ $t('Text12') }}</h2>
+        <p class="text-center text-font2 pt-2">{{ $t('Text13') }}</p>
       </v-col>
       <v-col cols="12" xs="12" sm="8" offset-sm="2" class="mt-2">
         <img src="@/assets/banner.png" width="100%" class="img-responsive">
@@ -334,7 +334,7 @@ export default {
       datepickerMenu: false,
       options: {
         duration: 1000,
-        offset: 200,
+        offset: 150,
         easing: 'easeInCubic',
       }
     };
@@ -378,6 +378,9 @@ export default {
     },
 
     async countryInput(e) {
+      if (e == null) {
+        return;
+      }
       this.uploadInfo.country = e.text;
       this.selectedCountryCode = e.value;
       this.provinceLoading = true;
@@ -390,6 +393,9 @@ export default {
     },
 
     async provinceInput(e) {
+      if (e == null) {
+        return;
+      }
       this.uploadInfo.province = e.text;
       this.selectedProvinceCode = e.value;
       this.cityLoading = true;
@@ -403,6 +409,9 @@ export default {
     },
 
     cityInput(e) {
+      if (e == null) {
+        return;
+      }
       this.uploadInfo.city = e.text;
     }
   },
@@ -411,6 +420,14 @@ export default {
     this.countryLoading = true;
     var res = await this.getCountries();
     this.countries = Object.assign([], res);
+    this.countries.unshift({
+      text: "Canada",
+      value: "CA"
+    }, {
+      text: "United States",
+      value: "US"
+    });
+    
     this.countryLoading = false;
   }
 };

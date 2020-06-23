@@ -22,7 +22,7 @@ const mutations = {
 const actions = {
   save: async ({ commit }, payload) => {
     let headers = { };
-    return API.post(`/api/upload`, payload, headers).then(res => {
+    return API.post(`api/upload`, payload, headers).then(res => {
       // commit(SET_USER_PROFILE, res.data);
       return res.data;
     }).catch(err => {
@@ -32,7 +32,7 @@ const actions = {
 
   getCountries: async ({ commit }) => {
     let headers = { };
-    return API.get(`/api/getCountries`, headers).then(res => {
+    return API.get(`api/getCountries`, headers).then(res => {
       // commit(SET_USER_PROFILE, res.data);
       return res;
     }).catch(err => {
@@ -42,7 +42,7 @@ const actions = {
 
   getStates: async ({ commit }, payload) => {
     let headers = { };
-    return API.get(`/api/getStates?countryId=${payload.countryId}`, headers).then(res => {
+    return API.get(`api/getStates?countryId=${payload.countryId}`, headers).then(res => {
       // commit(SET_USER_PROFILE, res.data);
       return res;
     }).catch(err => {
@@ -52,7 +52,7 @@ const actions = {
 
   getCities: async ({ commit }, payload) => {
     let headers = { };
-    return API.get(`/api/getCities?countryId=${payload.countryId}&stateId=${payload.stateId}`, headers).then(res => {
+    return API.get(`api/getCities?countryId=${payload.countryId}&stateId=${payload.stateId}`, headers).then(res => {
       // commit(SET_USER_PROFILE, res.data);
       return res;
     }).catch(err => {

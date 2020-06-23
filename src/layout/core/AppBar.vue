@@ -103,20 +103,4 @@
   align-items: flex-end;
 }
 
-/*@media (max-width: 768px) {
-  .header-bar {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .header-bar button {
-    margin-top: 10px!important;
-  }
-
-  .logo {
-    width: 100%;
-    height: auto;
-    margin-top: 20px;
-  }  
-}*/
 </style>
