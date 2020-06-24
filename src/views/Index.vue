@@ -2,8 +2,8 @@
   <v-container fluid tag="section">
     <v-row>
       <v-col cols="12" xs="12" sm="6" offset-sm="3">
-        <h1 class="text-font1 text-center display-4">{{ $t('Text1') }}</h1>
-        <h2 class="headline text-center text-font2 mb-5">{{ $t('Text2') }}</h2>
+        <h1 class="text-font1 text-center heading1 font-weight-bold">{{ $t('Text1') }}</h1>
+        <h2 class="display-4 text-center text-font1 mb-5">{{ $t('Text2') }}</h2>
         <p class="text-center text-font2 pt-2">{{ $t('Text3') }}</p>
       </v-col>
       <v-col cols="12" xs="12" sm="8" offset-sm="2">
@@ -59,7 +59,7 @@
             </v-col>
 
             <v-col cols="12" md="3">
-              <v-combobox
+              <v-autocomplete
                 :rules="countryRules"
                 :loading="countryLoading"
                 :items="countries"
@@ -68,11 +68,11 @@
                 color="blue darken-2"
                 @input="countryInput"
                 required
-              ></v-combobox>
+              ></v-autocomplete>
             </v-col>
 
             <v-col cols="12" md="3">
-              <v-combobox
+              <v-autocomplete
                 :rules="provinceRules"
                 :loading="provinceLoading"
                 :items="provinces"
@@ -81,11 +81,11 @@
                 color="blue darken-2"
                 @input="provinceInput"
                 required
-              ></v-combobox>
+              ></v-autocomplete>
             </v-col>
 
             <v-col cols="12" md="3">
-              <v-combobox
+              <v-autocomplete
                 :rules="cityRules"
                 :loading="cityLoading"
                 :items="cities"
@@ -94,7 +94,7 @@
                 color="blue darken-2"
                 @input="cityInput"
                 required
-              ></v-combobox>
+              ></v-autocomplete>
             </v-col>
 
             <v-col cols="12" md="6">
@@ -130,7 +130,7 @@
                 <template v-slot:activator="{ on, attrs }">
                   <v-text-field
                     v-model="uploadInfo.deliveryDate"
-                    label="Required delivery date"
+                    :label="$t('Required delivery date')"
                     prepend-icon="mdi-calendar"
                     readonly
                     required
@@ -147,11 +147,15 @@
               <v-file-input
                 show-size
                 accept="image/*"
-                label="Upload logo here"
+                :label="$t('Upload logo here')"
                 v-model="image"
                 :rules="imageRules"
                 required
               ></v-file-input>
+            </v-col>
+
+            <v-col cols="12">
+              <h3 class="headline">{{ $t('Select 3 colors for your company masks') }}</h3>
             </v-col>
 
             <v-col cols="12" md="4">
@@ -200,7 +204,6 @@
                 :rules="phoneRules"
                 :label="$t('Phone')"
                 color="blue darken-2"
-                required
               ></v-text-field>
             </v-col>
 
@@ -214,12 +217,22 @@
             </v-col>
 
             <v-col cols="12" md="12" class="d-flex justify-center">
-              <v-btn :disabled="!valid" color="success" class="mb-4 mx-auto submit-button" @click="validate" :loading="saveLoading">{{ $t('Save') }}</v-btn>
+              <v-btn :disabled="!valid" color="darkgrey darken-3" class="mb-4 mx-auto display-2 submit-button" @click="validate" :loading="saveLoading">{{ $t('Save') }}</v-btn>
             </v-col>
           </v-row>
         </v-form>
       </v-col>
     </v-row>
+    <v-dialog v-model="notification" persistent max-width="400">
+      <v-card>
+        <h2 class="text-font2 display-1">{{ $t('modal-text') }}</h2>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="green darken-1" text @click="window.location.href='https://legaleriste.com'">OK</v-btn>
+          <v-spacer></v-spacer>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
     <v-snackbar
       v-model="notification"
       :color="color"
@@ -291,8 +304,7 @@ export default {
       firstNameRules: [v => !!v || this.$t("First name is required")],
       lastNameRules: [v => !!v || this.$t("Last name is required")],
       phoneRules: [
-        v => !!v || this.$t("Phone number is required"),
-        v => /^\d+$/.test(v) || this.$t("Phone number must be valid")
+        v => /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/.test(v) || this.$t("Phone number must be valid")
       ],
       emailRules: [
         v => !!v || this.$t("E-mail is required"),
@@ -435,7 +447,7 @@ export default {
 
 <style scoped>
 .submit-button {
-  width: 200px;
+  width: 300px;
 }
 
 .text-font1 {
@@ -444,5 +456,9 @@ export default {
 
 .text-font2 {
   font-family: 'Circular Std Bold'!important;
+}
+
+.heading1 {
+  font-size: 54px;
 }
 </style>

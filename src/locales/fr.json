@@ -10,7 +10,7 @@
 	"Phone": "Téléphone",
 	"Comment": "Commentaire",
 	"Upload logo here": "Téléchargez le logo ici",
-	"Save": "sauver",
+	"Save": "ENVOYEZ AU DESIGN",
 	"Please fill the form": "Veuillez remplir le formulaire",
 	"Name is required": "Le nom est requis",
     "Company name is required": "Le nom de l'entreprise est obligatoire",
@@ -40,5 +40,9 @@
     "Text10": "- Double couche de poly interlock hautement extensible traité thermiquement",
     "Text11": "- Fait au Canada",
     "Text12": "À vous de jouer !",
-    "Text13": "En moins d’une minute, remplissez les informations ci-bas. Les designers vous enverront des options de design et de prix. Vous pourrez commenter vos visuels. Prenez le temps de le faire… Il ne faut pas sous-estimer la force de cet outil marketing."
+    "Text13": "En moins d’une minute, remplissez les informations ci-bas. Les designers vous enverront des options de design et de prix. Vous pourrez commenter vos visuels. Prenez le temps de le faire… Il ne faut pas sous-estimer la force de cet outil marketing.",
+    "Required delivery date": "Date de livraison voulue",
+    "Upload logo here": "Télécharge votre logo ici",
+    "Select 3 colors for your company masks": "Sélectionner 3 couleurs pour vos masques corporatifs",
+    "modal-text": "D’ici 2 jours ouvrables, vous recevrez par courriel des options de designs de masques que vous pourrez partager avec vos collègues. Des options de prix et de délais de production accompagneront ce courriel. \n À tout de suite!"
 }
