@@ -150,8 +150,11 @@
                 :label="$t('Upload logo here')"
                 v-model="image"
                 :rules="imageRules"
+                :hint="$t('sizelimit')"
+                persistent-hint
                 required
                 clearable
+                @change="fileUpdate"
               ></v-file-input>
             </v-col>
 
@@ -267,6 +270,7 @@ export default {
   name: "Index",
   data() {
     return {
+      fileSizeValid: true,
       notification: false,
       notificationText: null,
       timeout: 3000,
@@ -311,7 +315,10 @@ export default {
         v => !!v || this.$t("E-mail is required"),
         v => /.+@.+/.test(v) || this.$t("E-mail must be valid")
       ],
-      imageRules: [v => !!v || this.$t("Image is required")],
+      imageRules: [
+        v => !!v || this.$t("Image is required"),
+        v => this.fileSizeValid || this.$t("File size exceeded")
+      ],
       colorRules: [v => !!v || this.$t("Color is required")],
       MaskCountRules: [v => !!v || this.$t("Number of masks needed is required")],
       deliveryDateRules: [v => !!v || this.$t("Delivery date is required")],
@@ -370,6 +377,10 @@ export default {
       window.location.href='https://legaleriste.com';
     },
 
+    fileUpdate(file) {
+      this.fileSizeValid = file && file.size > 5000000 ? false : true;
+    },
+
     async validate() {
       if (this.$refs.form.validate()) {
         this.saveLoading = true;
@@ -399,7 +410,6 @@ export default {
       if (e == null) {
         return;
       }
-      console.log(e);
       this.uploadInfo.country = e.text;
       this.selectedCountryCode = e.value;
       this.provinceLoading = true;
@@ -415,7 +425,6 @@ export default {
       if (e == null) {
         return;
       }
-      console.log(e);
       this.uploadInfo.province = e.text;
       this.selectedProvinceCode = e.value;
       this.cityLoading = true;
@@ -432,7 +441,6 @@ export default {
       if (e == null) {
         return;
       }
-      console.log(e);
       this.uploadInfo.city = e.text;
     }
   },
