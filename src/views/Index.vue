@@ -151,6 +151,7 @@
                 v-model="image"
                 :rules="imageRules"
                 required
+                clearable
               ></v-file-input>
             </v-col>
 
@@ -223,17 +224,17 @@
         </v-form>
       </v-col>
     </v-row>
-    <v-dialog v-model="notification" persistent max-width="400">
+    <v-dialog v-model="notification" persistent max-width="900">
       <v-card>
-        <h2 class="text-font2 display-1">{{ $t('modal-text') }}</h2>
+        <v-card-text><h2 class="text-font2 display-2 text-center">{{ $t('modal-text1') }}<br><br>{{ $t('modal-text2') }}</h2></v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="green darken-1" text @click="window.location.href='https://legaleriste.com'">OK</v-btn>
+          <v-btn color="darkgrey darken-3" class="display-2" @click="goToMainSite">OK</v-btn>
           <v-spacer></v-spacer>
         </v-card-actions>
       </v-card>
     </v-dialog>
-    <v-snackbar
+    <!-- <v-snackbar
       v-model="notification"
       :color="color"
       :multi-line="true"
@@ -252,7 +253,7 @@
           Close
         </v-btn>
       </template>
-    </v-snackbar>
+    </v-snackbar> -->
   </v-container>
 </template>
 
@@ -304,7 +305,7 @@ export default {
       firstNameRules: [v => !!v || this.$t("First name is required")],
       lastNameRules: [v => !!v || this.$t("Last name is required")],
       phoneRules: [
-        v => /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/.test(v) || this.$t("Phone number must be valid")
+        v => /^[0-9.-]+$/.test(v) || this.$t("Phone number must be valid")
       ],
       emailRules: [
         v => !!v || this.$t("E-mail is required"),
@@ -363,6 +364,11 @@ export default {
       getStates: "getStates",
       getCities: "getCities"
     }),
+
+    goToMainSite() {
+      this.notification = false;
+      window.location.href='https://legaleriste.com';
+    },
 
     async validate() {
       if (this.$refs.form.validate()) {
