@@ -63,7 +63,7 @@
                 :rules="countryRules"
                 :loading="countryLoading"
                 :items="countries"
-                :item-value="'value'"
+                :return-object="true"
                 :label="$t('Country')"
                 color="blue darken-2"
                 @input="countryInput"
@@ -76,7 +76,7 @@
                 :rules="provinceRules"
                 :loading="provinceLoading"
                 :items="provinces"
-                :item-value="'value'"
+                :return-object="true"
                 :label="$t('Province')"
                 color="blue darken-2"
                 @input="provinceInput"
@@ -89,7 +89,7 @@
                 :rules="cityRules"
                 :loading="cityLoading"
                 :items="cities"
-                :item-value="'value'"
+                :return-object="true"
                 :label="$t('City')"
                 color="blue darken-2"
                 @input="cityInput"
@@ -393,6 +393,7 @@ export default {
       if (e == null) {
         return;
       }
+      console.log(e);
       this.uploadInfo.country = e.text;
       this.selectedCountryCode = e.value;
       this.provinceLoading = true;
@@ -408,6 +409,7 @@ export default {
       if (e == null) {
         return;
       }
+      console.log(e);
       this.uploadInfo.province = e.text;
       this.selectedProvinceCode = e.value;
       this.cityLoading = true;
@@ -424,6 +426,7 @@ export default {
       if (e == null) {
         return;
       }
+      console.log(e);
       this.uploadInfo.city = e.text;
     }
   },
