@@ -59,42 +59,33 @@
             </v-col>
 
             <v-col cols="12" md="3">
-              <v-autocomplete
+              <v-text-field
                 :rules="countryRules"
-                :loading="countryLoading"
-                :items="countries"
-                :return-object="true"
                 :label="$t('Country')"
                 color="blue darken-2"
-                @input="countryInput"
+                v-model="uploadInfo.country"
                 required
-              ></v-autocomplete>
+              ></v-text-field>
             </v-col>
 
             <v-col cols="12" md="3">
-              <v-autocomplete
+              <v-text-field
                 :rules="provinceRules"
-                :loading="provinceLoading"
-                :items="provinces"
-                :return-object="true"
                 :label="$t('Province')"
                 color="blue darken-2"
-                @input="provinceInput"
+                v-model="uploadInfo.province"
                 required
-              ></v-autocomplete>
+              ></v-text-field>
             </v-col>
 
             <v-col cols="12" md="3">
-              <v-autocomplete
+              <v-text-field
                 :rules="cityRules"
-                :loading="cityLoading"
-                :items="cities"
-                :return-object="true"
                 :label="$t('City')"
                 color="blue darken-2"
-                @input="cityInput"
+                v-model="uploadInfo.city"
                 required
-              ></v-autocomplete>
+              ></v-text-field>
             </v-col>
 
             <v-col cols="12" md="6">
@@ -228,8 +219,10 @@
       </v-col>
     </v-row>
     <v-dialog v-model="notification" persistent max-width="900">
-      <v-card>
-        <v-card-text><h2 class="text-font2 display-2 text-center">{{ $t('modal-text1') }}<br><br>{{ $t('modal-text2') }}</h2></v-card-text>
+      <v-card class="pt-3 pb-3">
+        <v-card-text>
+          <h2 class="text-font2 display-2 text-center">{{ $t('modal-text1') }}<br><br>{{ $t('modal-text2') }}</h2>
+        </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn color="darkgrey darken-3" class="display-2" @click="goToMainSite">OK</v-btn>
@@ -237,26 +230,6 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
-    <!-- <v-snackbar
-      v-model="notification"
-      :color="color"
-      :multi-line="true"
-      :timeout="timeout"
-      :top="true"
-    >
-      {{ notificationText }}
-
-      <template v-slot:action="{ attrs }">
-        <v-btn
-          dark
-          text
-          v-bind="attrs"
-          @click="notification = false"
-        >
-          Close
-        </v-btn>
-      </template>
-    </v-snackbar> -->
   </v-container>
 </template>
 
@@ -276,30 +249,6 @@ export default {
       timeout: 3000,
       color: null,
       basicUrl: null,
-      faq: [
-        {
-          question: "What's your favourite sport?",
-          answer: "Soccer"
-        },
-        {
-          question: "Who's the best soccer player?",
-          answer: "Lionel Messi"
-        },
-        {
-          question: "Is Messi better than Ronaldo?",
-          answer: "Definitely Yes"
-        },
-        {
-          question: "What is Vuetify JS?",
-          answer:
-            "Vuetify. js is a component framework for Vue. js 2. It aims to provide clean, semantic and reusable components that make building your application a breeze."
-        },
-        {
-          question: "How do I check Vuetify version?",
-          answer:
-            "1 Answer \n To check which version is installed globally: Run the following command: npm ls -g --depth 0 vuetify. \n To check which version is installed locally within your project: Firstly, cd to the project directory and then run: npm ls --depth 0 vuetify."
-        }
-      ],
       nameRules: [v => !!v || this.$t("Name is required")],
       companyNameRules: [v => !!v || this.$t("Company name is required")],
       cityRules: [v => !!v || this.$t("City is required")],
@@ -378,7 +327,7 @@ export default {
     },
 
     fileUpdate(file) {
-      this.fileSizeValid = file && file.size > 5000000 ? false : true;
+      this.fileSizeValid = file && file.size > 10000000 ? false : true;
     },
 
     async validate() {
