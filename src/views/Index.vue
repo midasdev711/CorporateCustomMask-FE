@@ -7,7 +7,7 @@
         <p class="text-center text-font2 pt-2">{{ $t('Text3') }}</p>
       </v-col>
       <v-col cols="12" xs="12" sm="8" offset-sm="2">
-        <img src="@/assets/banner1.png" width="100%" class="img-responsive">
+        <img src="@/assets/banner3.jpg" width="100%" class="img-responsive">
       </v-col>
       <v-col cols="12" xs="12" sm="6" offset-sm="3" class="text-center">
         <v-btn
