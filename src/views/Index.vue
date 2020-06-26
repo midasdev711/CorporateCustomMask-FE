@@ -45,7 +45,7 @@
         <img src="@/assets/banner.png" width="100%" class="img-responsive">
       </v-col>
       <v-col cols="12" xs="12" sm="8" offset-sm="2">
-        <h3 class="headline">{{ $t('Please fill the form') }}</h3>
+        <h3 class="headline text-font1">{{ $t('Please fill the form') }}</h3>
         <v-form ref="form" lazy-validation v-model="valid" id="form" class="elevation-2 grey lighten-4 pa-3 mt-5">
           <v-row>
             <v-col cols="12" md="3">
@@ -150,17 +150,30 @@
             </v-col>
 
             <v-col cols="12">
-              <h3 class="headline">{{ $t('Select 3 colors for your company masks') }}</h3>
+              <h3 class="headline text-font1">{{ $t('color-statement') }}</h3>
             </v-col>
 
-            <v-col cols="12" md="4">
-              <v-color-picker class="ma-2" v-model="uploadInfo.color1" :rules="colorRules" mode="hexa" required></v-color-picker>
+            <v-col cols="12" md="4" class="d-flex justify-center align-center">
+              <div class="grey lighten-2 color-box d-flex justify-space-around flex-column align-center">
+                <v-color-picker class="ma-2" v-model="uploadInfo.color1" mode="hexa" v-if="showColorPicker1" hide-mode-switch></v-color-picker>
+                <v-btn color="darkgrey darken-3" class="display-1" @click="showColorPicker1 = true" v-else>{{ $t('select-color') }} 1</v-btn>
+                <v-btn color="darkgrey darken-3" class="display-1" @click="showColorPicker1 = false; uploadInfo.color1 = null" v-if="showColorPicker1">{{ $t('cancel') }}</v-btn>
+              </div>
             </v-col>
-            <v-col cols="12" md="4">
-              <v-color-picker class="ma-2" v-model="uploadInfo.color2" :rules="colorRules" mode="hexa" required></v-color-picker>
+            <v-col cols="12" md="4" class="d-flex justify-center align-center">
+              <div class="grey lighten-2 color-box d-flex justify-space-around flex-column align-center">
+                <v-color-picker class="ma-2" v-model="uploadInfo.color2" mode="hexa" v-if="showColorPicker2" hide-mode-switch></v-color-picker>
+                <v-btn color="darkgrey darken-3" class="display-1" @click="showColorPicker2 = true" v-else>{{ $t('select-color') }} 2</v-btn>
+                <v-btn color="darkgrey darken-3" class="display-1" @click="showColorPicker2 = false; uploadInfo.color2 = null" v-if="showColorPicker2">{{ $t('cancel') }}</v-btn>
+              </div>
             </v-col>
-            <v-col cols="12" md="4">
-              <v-color-picker class="ma-2" v-model="uploadInfo.color3" :rules="colorRules" mode="hexa" required></v-color-picker>
+            <v-col cols="12" md="4" class="d-flex justify-center align-center">
+              <div class="grey lighten-2 color-box d-flex justify-space-around flex-column align-center">
+                <v-color-picker class="ma-2" v-model="uploadInfo.color3" mode="hexa" v-if="showColorPicker3" hide-mode-switch></v-color-picker>
+                <v-btn color="darkgrey darken-3" class="display-1" @click="showColorPicker3 = true" v-else>{{ $t('select-color') }} 3</v-btn>
+                <v-btn color="darkgrey darken-3" class="display-1" @click="showColorPicker3 = false; uploadInfo.color3 = null" v-if="showColorPicker3">{{ $t('cancel') }}</v-btn>
+              </div>
+              
             </v-col>
 
             <v-col cols="12" md="3">
@@ -305,7 +318,12 @@ export default {
         duration: 1000,
         offset: 150,
         easing: 'easeInCubic',
-      }
+      },
+      showColorPicker1: false,
+      showColorPicker2: false,
+      showColorPicker3: false,
+      picker2_disabled: true,
+      picker3_disabled: true,
     };
   },
 
@@ -341,6 +359,10 @@ export default {
 
         // additional data
         this.uploadInfo.filename = this.image.name;
+
+        this.uploadInfo.color1 = this.uploadInfo.color1 && this.uploadInfo.color1.hex ? this.uploadInfo.color1.hex : null;
+        this.uploadInfo.color2 = this.uploadInfo.color2 && this.uploadInfo.color2.hex ? this.uploadInfo.color2.hex : null;
+        this.uploadInfo.color3 = this.uploadInfo.color3 && this.uploadInfo.color3.hex ? this.uploadInfo.color3.hex : null; 
         console.log(this.uploadInfo);
         formData.append("info", JSON.stringify(this.uploadInfo));
 
@@ -426,5 +448,10 @@ export default {
 
 .heading1 {
   font-size: 54px;
+}
+
+.color-box {
+  width: 320px;
+  height: 380px;
 }
 </style>

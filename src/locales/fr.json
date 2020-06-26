@@ -43,7 +43,9 @@
     "Text13": "En moins d’une minute, remplissez les informations ci-bas. Les designers vous enverront des options de design et de prix. Vous pourrez commenter vos visuels. Prenez le temps de le faire… Il ne faut pas sous-estimer la force de cet outil marketing.",
     "Required delivery date": "Date de livraison voulue",
     "Upload logo here": "Télécharge votre logo ici",
-    "Select 3 colors for your company masks": "Sélectionner 3 couleurs pour vos masques corporatifs",
+    "color-statement": "Sélectionnez jusqu'à 3 couleurs qui représentent votre compagnie. Nos designers les utiliseront pour leurs recommandations de designs.",
+    "select-color": "Choix de couleur",
+    "cancel": "Cancel",
     "modal-text1": "D’ici 2 jours ouvrables, vous recevrez par courriel des options de designs de masques que vous pourrez partager avec vos collègues. Des options de prix et de délais de production accompagneront ce courriel.",
     "modal-text2": "À tout de suite!",
     "sizelimit": "Taille maximale 10 MB"
